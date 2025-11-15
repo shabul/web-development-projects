@@ -1,6 +1,8 @@
-# Web Development Projects Collection
+# Web Development Projects Collection (2015-2019)
 
-A comprehensive collection of web development projects showcasing various technologies and applications. This repository contains 5 complete web applications built with different tech stacks and serving different purposes.
+> **Note**: These are undergraduate projects developed between 2015-2019 during my computer science studies. They represent my learning journey and foundational skills in web development. My current technical expertise and professional capabilities have evolved significantly beyond what's demonstrated in these early projects.
+
+A collection of 5 web development projects from my undergraduate years, showcasing various technologies and applications that I learned and implemented as a student.
 
 ## 🚀 Projects Overview
 
