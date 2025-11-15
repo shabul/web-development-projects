@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment</title>
+  <link rel="stylesheet" href="../static/css/datepicker_ui.css" />
+  <link rel="icon" href="/static/images/logo1.png" type="image/icon type" />
+
+  <!-- Bootstrap CSS File -->
+  <link href="../static/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../static/css/bootstrap-multiselect.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
+<!--   <link href="{{ url_for('static', filename='css/icofont.min.css') }}" rel="stylesheet" /> -->
+  <!-- Libraries CSS Files -->
+  <link href="{{ url_for('static', filename='css/sweetalert2.css') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='css/migrata_alert.css') }}" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+  <!-- Main Stylesheet File -->
+  <link href="../static/css/style.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/fixedcolumns/4.0.1/css/fixedColumns.dataTables.min.css" />
+
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+</head>
+
+    
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+    <title>Home</title> -->
+</head>
+<style>
+    .display table {
+      width: 80%;
+    }
+  
+    .display th {
+      color: white;
+      background: #87ceeb;
+      height: 50px;
+    }
+  
+    .display td {
+      height: 50px;
+    }
+  
+    .center {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+    .stylebutton {
+      margin-left: 500px;
+    }
+  
+    .ui-datepicker {
+      width: 18em;
+      margin-top: 70px;
+    }
+  
+    h1 {
+      color: green;
+    }
+  
+    ul.multiselect-container {
+      height: 250px;
+      overflow: scroll;
+      overflow-x: hidden;
+    }
+    #response{
+      font-weight: bold;
+    }
+
+  
+  </style>
+
+<body>
+  
+
+   <div class="container-fluid header-wrapper sticky-top mb-5 p-0">
+    <div class="container">
+      <header>
+        <nav class="navbar navbar-expand-lg p-0">
+          <a class="navbar-brand pl-0" href="/home">
+            <img src=/static/images/title_logo.png alt="no image" height="72" />
+          </a>
+          <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav">
+            <span class="navbar-toggler-icon"><i class="material-icons">menu</i></span>
+          </button>
+
+          <!--  Banner part start        -->
+          <div class="collapse navbar-collapse main-menu text-left" id="nav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                <a class="nav-link swipe-up" href="/home">
+                  <span>Home</span></a>
+              </li>
+              <li class="nav-item active">
+                <a style="padding:10px;" class="nav-link swipe-up" href="/add_medicine">
+                  <span >Add Medicine</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link swipe-up" href="/buy_medicine">
+                  <span>Buy Medicine</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link swipe-up" href="/view_dashboard">
+                  <span>Dashboard</span></a>
+              </li>
+              
+              <li class="nav-item">
+                <a class="nav-link swipe-up" href="/logout">
+                  <span>Logout</span></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+    </div>
+  </div>
+
+  <!-- -------------Nav bar end------------------ -->
+
+  <div class="container-fluid content-wrapper mb-5 p-0">
+    <div class="container wrapper services">
+      <div class="row">
+        <div class="col-6 title">
+          <h2>Buy Medicine</h2>
+        </div>
+      </div>
+
+
+      <div style="align-content: center; margin-left: -140px;" align="center" id="stats">
+        <p class="h5" id="result"></p>
+           </div>
+      
+    <br/>
+    <div class="row">
+    <div class="col-md-6">
+    <form id="appoint_form">
+        
+        <label >Medicine Name </label>
+        <input type="text" id="mname" class="form-control" placeholder="Medicine Name">
+        <br/>
+        <label >Price</label>
+
+        <input type="text" id="price"  class="form-control"   placeholder="Price" onkeypress="return isNumber(event);" />
+
+        <br/>
+
+        <label >Batch ID</label>
+
+        <input type="text" id="batchID"  class="form-control"   placeholder="Batch ID"  />
+
+        <br/>
+
+
+        
+       
+        
+
+      </div>
+      <!-- col 1  ends her -->
+      <div class="col-md-6">
+
+
+        <label>Expiry Month, Year</label>
+        <input type="month" id="expDate"  class="form-control" required/>
+        <br>        
+        <label >Units Available</label>
+
+        <input type="text" id="units"  class="form-control"   placeholder="Units Available" onkeypress="return isNumber(event);" />
+
+        <br/>
+
+        <label >Discount</label>
+
+        <input type="text" id="disc"  class="form-control"   placeholder="Discount Precentage" onkeypress="return isNumber(event);" />
+
+        <br/>
+        
+
+        
+
+
+
+
+
+
+        </div>
+
+
+      </div>
+        <button type="submit" id="submit-button" class="btn btn-primary" type="submit">Add Medicine</button>
+    </form>
+    
+    </div>
+ </div>
+
+ <!-- <center>
+ <div id="response"></div>
+</center> -->
+
+
+
+
+
+</body>
+
+
+</html>
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+
+<script src="../static/js/popper.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/js/bootstrap-multiselect.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript"
+  src="https://cdn.datatables.net/fixedcolumns/4.0.1/js/dataTables.fixedColumns.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdn.datatables.net/plug-ins/1.12.1/api/column().title().js"></script>
+
+<script>
+
+
+function isNumber(e){
+    e = e || window.event;
+    var charCode = e.which ? e.which : e.keyCode;
+    return /\d/.test(String.fromCharCode(charCode));
+}
+
+
+
+
+$(document).ready(function() {
+      $("#submit-button").click(function(event){
+
+        // code for making the ui to wait for data from backend 
+        event.preventDefault();
+
+        var mname = document.getElementById('mname').value;
+        var price=  document.getElementById('price').value;
+        
+        var batchID=  document.getElementById('batchID').value;
+        
+        var units =  document.getElementById('units').value;
+        
+        var disc =  document.getElementById('disc').value;
+        
+        
+        var expDate =  document.getElementById('expDate').value;
+        
+        
+        
+        console.log(price);
+        console.log(mname);
+        console.log(expDate)
+ 
+            
+         $.ajax({
+            url: "/add_medicine_api",
+            type: "get",
+            contentType: "application/json",
+            data: {
+              mname : mname,
+              price : price,
+              batchID:batchID,
+              units : units,
+              disc : disc,
+              expDate : expDate,
+              
+              
+              
+            
+            },
+           success: function(response) {
+           
+            console.log(response)
+            if (response["appoint_res"]=="Failed"){
+              document.getElementById("result").innerHTML = "Failed ! Re-enter the appointment details";
+              document.getElementById("appoint_form").reset();
+            }
+            else{               
+              document.getElementById("result").innerHTML = response["appoint_res"];
+              document.getElementById("appoint_form").reset();
+            }
+
+            $('#stats').show();
+
+
+         },
+          error: function(xhr) {
+        //Do Something to handle error
+        console.log("Error")
+        
+        }
+       });
+     });
+   });
+
+
+
+
+
+
+</script>

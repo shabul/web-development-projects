@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buy medicien</title>
+  <link rel="stylesheet" href="../static/css/datepicker_ui.css" />
+  <link rel="icon" href="/static/images/logo1.png" type="image/icon type" />
+
+  <!-- Bootstrap CSS File -->
+  <link href="../static/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../static/css/bootstrap-multiselect.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" />
+<!--   <link href="{{ url_for('static', filename='css/icofont.min.css') }}" rel="stylesheet" /> -->
+  <!-- Libraries CSS Files -->
+  <link href="{{ url_for('static', filename='css/sweetalert2.css') }}" rel="stylesheet" />
+  <link href="{{ url_for('static', filename='css/migrata_alert.css') }}" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+
+  <!-- Main Stylesheet File -->
+  <link href="../static/css/style.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://cdn.datatables.net/fixedcolumns/4.0.1/css/fixedColumns.dataTables.min.css" />
+</head>
+
+    
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+
+    <title>Home</title> -->
+</head>
+<style>
+    .display table {
+      width: 80%;
+    }
+  
+    .display th {
+      color: white;
+      background: #87ceeb;
+      height: 50px;
+    }
+  
+    .display td {
+      height: 50px;
+    }
+  
+    .center {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  
+    .stylebutton {
+      margin-left: 500px;
+    }
+  
+    .ui-datepicker {
+      width: 18em;
+      margin-top: 70px;
+    }
+  
+    h1 {
+      color: green;
+    }
+  
+    ul.multiselect-container {
+      height: 250px;
+      overflow: scroll;
+      overflow-x: hidden;
+    }
+  </style>
+
+<body>
+
+   <div class="container-fluid header-wrapper sticky-top mb-5 p-0">
+    <div class="container">
+      <header>
+        <nav class="navbar navbar-expand-lg p-0">
+          <a class="navbar-brand pl-0" href="/home">
+            <img src=/static/images/title_logo.png alt="no image" height="72" />
+          </a>
+          <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#nav">
+            <span class="navbar-toggler-icon"><i class="material-icons">menu</i></span>
+          </button>
+          <!--  Banner part start        -->
+          <div class="collapse navbar-collapse main-menu text-left" id="nav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                <a class="nav-link swipe-up" href="/home">
+                  <span>Home</span></a>
+              </li>
+              <li class="nav-item">
+                <a style="padding:10px;" class="nav-link swipe-up" href="/add_medicine">
+                  <span >Add Medicine</span></a>
+              </li>
+              <li class="nav-item active">
+                <a class="nav-link swipe-up active" href="/buy_medicine">
+                  <span>Buy Medicine</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link swipe-up" href="/view_dashboard">
+                  <span>Dashboard</span></a>
+              </li>
+              
+              <li class="nav-item">
+                <a class="nav-link swipe-up" href="/logout">
+                  <span>Logout</span></a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+    </div>
+  </div>
+
+  <!-- -------------Nav bar end------------------ -->
+
+  <div class="container-fluid content-wrapper mb-5 p-0">
+    <div class="container wrapper services">
+      <div class="row">
+        <div class="col-6 title">
+          <h2>Buy Medicine</h2>
+        </div>
+      </div>
+
+
+
+      
+      <div style="align-content: center; margin-left: -140px;" align="center" id="stats">
+        <p class="h5" id="result"></p>
+           </div>
+
+
+
+    
+    <br/>
+    
+
+    <form id="inpatient_form">
+
+      <div class="row">
+        <div class="col-md-6">
+      <label >Medicine Name </label>
+      <select  id="mname" class="form-control" placeholder="Medicine Name"> </select>
+    </div>
+        
+      <br>
+      
+      <div class="col-md-6">
+
+      <label>No of Units</label>
+      <input type="number" id="units"  class="form-control" onkeypress="return isNumber(event);" />
+      <br>
+      </div>
+
+    </div>
+     
+      <button type="submit" id="get_price" class="btn btn-primary" type="submit">Get Price</button>
+
+  </form>
+
+  <div>
+    <center><div class=""  id="checkout"></div></center><br>
+    <button class="btn btn-primary" type="submit" id="pay" onclick="pay_and_buy()" style="display:None ;">Pay Cash</button>
+
+    <center><div class=""  id="show"></div></center><br>
+
+  </div>
+
+
+    </div>
+ </div>
+</body>
+
+
+
+</html>
+
+
+
+<!-- JavaScript Libraries -->
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+
+<script src="../static/js/popper.min.js"></script>
+<script src="../static/js/bootstrap.min.js"></script>
+<script src="../static/js/bootstrap-multiselect.js"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript"
+  src="https://cdn.datatables.net/fixedcolumns/4.0.1/js/dataTables.fixedColumns.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="https://cdn.datatables.net/plug-ins/1.12.1/api/column().title().js"></script>
+
+<script type="text/javascript">
+
+
+function isNumber(e){
+    e = e || window.event;
+    var charCode = e.which ? e.which : e.keyCode;
+    return /\d/.test(String.fromCharCode(charCode));
+}
+
+
+var mname = document.getElementById('mname').value;
+var units =  document.getElementById('units').value;
+
+
+
+
+
+
+$(window).on("load", get_meds_list);
+function get_meds_list() {
+
+    $.ajax({
+      type: "POST",
+      crossDomain: true,
+      url: "/get_list_of_medicines",
+      processData: false,
+      contentType: false,
+      success: function (response) {
+        var values = response;
+        console.log('sucess');
+        console.log(values);
+        for (const val of values) {
+          $('#mname').append($(document.createElement('option')).prop({
+            value: val,
+            text: val,
+          }))
+        }
+      },
+      error: function () {
+        console.log('error');
+      }
+    });
+  }
+
+
+
+  
+$('#get_price').click(function(event){
+  
+  console.log("in get Price");
+  
+  event.preventDefault();
+
+    $.ajax({
+      type: "POST",
+      url: "/get_price_of_medicines",
+      
+      data : JSON.stringify({'mname' : document.getElementById('mname').value,
+                              'units' : document.getElementById('units').value,
+                              }),
+      
+      success: function (response) {
+        var values = response;
+        if(response['response'] == "false"){
+
+          document.getElementById("result").innerHTML = response['data'];
+          document.getElementById("inpatient_form").reset();
+        }
+        else{
+            $('#get_price').hide();
+            document.getElementById("checkout").innerHTML = response['data'];
+
+            $('#pay').show();
+
+
+        }
+        console.log('sucess in price');
+        console.log(values);
+        
+      },
+      error: function () {
+
+        console.log('error in price');
+      }
+    });
+  });
+
+
+
+
+
+function pay_and_buy(){
+  console.log(" in pay n buy")
+
+  event.preventDefault();
+
+    $.ajax({
+      type: "POST",
+      url: "/update_units",
+      
+      data : JSON.stringify({'mname' : document.getElementById('mname').value,
+                              'units' : document.getElementById('units').value,
+                              }),
+      
+      success: function (response) {
+        var values = response;
+
+          document.getElementById("show").innerHTML = response['response'];
+          document.getElementById("inpatient_form").reset();
+          $('#pay').hide();
+          $('#checkout').hide();
+          // $('#get_price').show();
+          
+          
+        
+        
+        console.log('sucess in price');
+        console.log(values);
+        
+      },
+      error: function () {
+        console.log('error in price');
+      }
+    });
+}
+
+
+
+
+$(document).ready(function() {
+      $("#submit-button").click(function(event){
+        $("#gen").prop("disabled", true);
+        // $("#result").hide()
+        event.preventDefault();
+        var pname = document.getElementById('pname').value;
+        var dob =  document.getElementById('dob').value;
+        var gender = $('input[name="gender"]:checked').val();
+        var roomType = $('input[name="roomType"]:checked').val();
+                    
+        var insurance =  $('input[name="insurance"]:checked').val();;
+        
+        var emp_type =  $('input[name="emp_type"]:checked').val();;
+        
+        
+        
+        var contact_person =  document.getElementById('contact_person').value;
+        var contact_person_number =  document.getElementById('contact_person_number').value;
+        
+        var dr_name =  document.getElementById('doctorname').value;
+        
+        var admit_date =  document.getElementById('admit_date').value;
+        var admit_time =  document.getElementById('admit_time').value;
+        
+        var minor = $('input[name="minor"]:checked').val();
+
+        var accident = $('input[name="accident"]:checked').val();
+
+        
+        
+        console.log(dob);
+        console.log(gender);
+        console.log(emp_type);
+        console.log(contact_person,contact_person_number);
+        console.log(dr_name)
+        console.log(admit_date,admit_time);
+ 
+            
+         $.ajax({
+            url: "/inpatient",
+            type: "GET",
+            contentType: "application/json",
+            data :{
+            pname : pname,
+            dob : dob,
+            gender : gender,
+            roomType:roomType,
+            insurance:insurance,
+            emp_type:emp_type,
+            contact_person:contact_person,
+            contact_person_number:contact_person_number,
+            dr_name:dr_name,
+            admit_date:admit_date,
+            admit_time:admit_time,
+            minor:minor,
+            accident:accident,
+
+            },
+           success: function(response) {
+            console.log(response)
+            if (response["inpatient_res"]=="Failed"){
+              document.getElementById("result").innerHTML = "Failed ! Re-enter the patient details";
+              document.getElementById("inpatient_form").reset();
+            }
+            else{               
+              document.getElementById("result").innerHTML = response["inpatient_res"];
+              document.getElementById("inpatient_form").reset();
+            }
+            // alert(response["inpatient_res"])
+	     $('#stats').show();
+
+          
+
+         },
+          error: function(xhr) {
+        //Do Something to handle error
+        console.log("Error")
+        
+        }
+       });
+     });
+   });
+
+
+
+
+
+
+</script>
