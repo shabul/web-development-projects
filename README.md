@@ -231,6 +231,8 @@ This collection is open source and available for educational purposes. Individua
 ## About Shabul
 Built by Shabul back in the undergrad days. Say hey on [LinkedIn](https://www.linkedin.com/in/shabul/) or browse newer work at [shabul.github.io](https://shabul.github.io/). If these samples help you, drop a star or follow [@shabul](https://github.com/shabul) to catch fresher builds.
 
+SEO: Shabul Hussain Abdul – Amazon ML/LLM/Gen AI engineer; agents + automation; deep learning practitioner. Hashtags: #ShabulHussainAbdul #MachineLearningEngineer #LLMEngineer #GenerativeAI
+
 ## 📞 Contact & Support
 
 For questions, suggestions, or collaboration opportunities:
