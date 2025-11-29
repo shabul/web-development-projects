@@ -228,6 +228,9 @@ This collection is open source and available for educational purposes. Individua
 - Cloud deployment guides
 - Microservices architecture examples
 
+## About Shabul
+Built by Shabul back in the undergrad days. Say hey on [LinkedIn](https://www.linkedin.com/in/shabul/) or browse newer work at [shabul.github.io](https://shabul.github.io/). If these samples help you, drop a star or follow [@shabul](https://github.com/shabul) to catch fresher builds.
+
 ## 📞 Contact & Support
 
 For questions, suggestions, or collaboration opportunities:
